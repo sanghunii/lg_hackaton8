@@ -106,7 +106,7 @@ print(f"[INFO] 모델 저장 완료: {OUT_DIR}")
 
 
 # == Submission == 
-zip_name = "baseline_submit"
+zip_name = "baseline_submit"                       # 이부분만 바꾸면 됨.
 print(f"[INFO] {zip_name}.zip 생성 중...")
 
 shutil.make_archive(

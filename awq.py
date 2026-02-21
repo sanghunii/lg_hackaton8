@@ -10,7 +10,12 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from llmcompressor import oneshot
 from llmcompressor.modifiers.quantization import AWQModifier
 
-
+# == GPU 체크 ==
+print(f"[INFO] GPU 사용 가능 여부: {torch.cuda.is_available()}")
+if torch.cuda.is_available():
+    print(f"[INFO] 인식된 GPU: {torch.cuda.get_device_name(0)}")
+else:
+    print("[WARNING] GPU를 찾을 수 없습니다. CPU로 진행되어 시간이 매우 오래 걸릴 수 있습니다.")
 
 
 # == Setting ==
@@ -30,8 +35,6 @@ IGNORE  = ["embed_tokens", "lm_head"]
 
 
 
-
-
 # == Model Load ==
 print("[INFO] 모델 로드 중...")
 
@@ -43,11 +46,10 @@ tokenizer = AutoTokenizer.from_pretrained(
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
     torch_dtype=torch.bfloat16,
+    device_map="auto",
 )
 
 print("[INFO] 모델/토크나이저 로드 완료")
-
-
 
 
 

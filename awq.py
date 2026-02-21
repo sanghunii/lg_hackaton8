@@ -8,7 +8,8 @@ from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from llmcompressor import oneshot
-from llmcompressor.modifiers.quantization import AWQModifier
+from llmcompressor.modifiers.awq import AWQModifier
+
 
 # == GPU 체크 ==
 print(f"[INFO] GPU 사용 가능 여부: {torch.cuda.is_available()}")
@@ -32,7 +33,6 @@ MAX_SEQUENCE_LENGTH = 512
 SCHEME = "W4A16_ASYM" 
 TARGETS = ["Linear"]
 IGNORE  = ["embed_tokens", "lm_head"]
-
 
 
 # == Model Load ==

@@ -11,3 +11,10 @@
 
 # metadata in macOS
 .DS_Store
+
+# zip files
+*.zip
+
+# base_model & test_gptq_model
+**/base_model
+**/test_gptq_model
